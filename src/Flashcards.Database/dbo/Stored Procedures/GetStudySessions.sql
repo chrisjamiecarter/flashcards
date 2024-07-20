@@ -9,3 +9,4 @@ BEGIN
 		[dbo].[StudySession]
 
 END
+GO

@@ -21,3 +21,5 @@ BEGIN
 	RETURN @Id
 
 END
+GO
+
