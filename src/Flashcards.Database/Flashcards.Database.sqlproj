@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{a724a932-eae2-4355-b3e9-6d7b2db79ecc}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -56,5 +56,39 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\Functions" />
+    <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="dbo\Views" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Stack.sql" />
+    <Build Include="dbo\Tables\Flashcard.sql" />
+    <Build Include="dbo\Tables\StudySession.sql" />
+    <Build Include="dbo\Functions\fnGetStackId.sql" />
+    <Build Include="dbo\Stored Procedures\AddFlashcard.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteFlashcard.sql" />
+    <Build Include="dbo\Stored Procedures\GetFlashcard.sql" />
+    <Build Include="dbo\Stored Procedures\GetFlashcards.sql" />
+    <Build Include="dbo\Stored Procedures\GetFlashcardsByStackId.sql" />
+    <Build Include="dbo\Stored Procedures\SetFlashcard.sql" />
+    <Build Include="dbo\Stored Procedures\AddStack.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteStack.sql" />
+    <Build Include="dbo\Stored Procedures\GetStack.sql" />
+    <Build Include="dbo\Stored Procedures\GetStacks.sql" />
+    <Build Include="dbo\Stored Procedures\SetStack.sql" />
+    <Build Include="dbo\Stored Procedures\AddStudySession.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudySessions.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudySessionAverageReportByYear.sql" />
+    <Build Include="dbo\Views\vwStudySessionAverageReport.sql" />
+    <Build Include="dbo\Views\vwStudySessionTotalReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudySessionTotalReportByYear.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Flashcards.Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="localdb.Flashcards.Database.publish.xml" />
   </ItemGroup>
 </Project>
