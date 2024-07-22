@@ -47,7 +47,7 @@ internal class SelectFlashcardPage : BasePage
     private static UserChoice GetOption(IReadOnlyList<FlashcardDto> flashcards)
     {
         // Add the list to the existing PageChoices.
-        IEnumerable<UserChoice> pageChoices = [.. PageChoices, .. flashcards.Select(x => new UserChoice(x.Id, $"{x.Question} = {x.Answer}"))];
+        IEnumerable<UserChoice> pageChoices = [.. flashcards.Select(x => new UserChoice(x.Id, $"{x.Question} = {x.Answer}")), .. PageChoices];
 
         return AnsiConsole.Prompt(
                 new SelectionPrompt<UserChoice>()
