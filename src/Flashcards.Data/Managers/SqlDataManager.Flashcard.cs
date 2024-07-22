@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using System.Xml.Linq;
 using Flashcards.Data.Entities;
 using Flashcards.Data.Exceptions;
 
@@ -56,7 +55,7 @@ public partial class SqlDataManager
         }
         else
         {
-            throw new EntityNotFoundException($"Unable to get Stack where Id = {id}");
+            throw new EntityNotFoundException($"Unable to get Flashcard where Id = {id}");
         }
     }
 
@@ -70,7 +69,28 @@ public partial class SqlDataManager
         using SqlCommand command = connection.CreateCommand();
         command.CommandText = $"{Schema}.GetFlashcards";
         command.CommandType = CommandType.StoredProcedure;
-        
+
+        using SqlDataReader reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            output.Add(new FlashcardEntity(reader));
+        }
+
+        return output;
+    }
+
+    public IReadOnlyList<FlashcardEntity> GetFlashcards(int stackId)
+    {
+        var output = new List<FlashcardEntity>();
+
+        using SqlConnection connection = new SqlConnection(ConnectionString);
+        connection.Open();
+
+        using SqlCommand command = connection.CreateCommand();
+        command.CommandText = $"{Schema}.GetFlashcardsByStackId";
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.Add("@StackId", SqlDbType.Int).Value = stackId;
+
         using SqlDataReader reader = command.ExecuteReader();
         while (reader.Read())
         {

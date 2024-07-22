@@ -30,6 +30,11 @@ public class StackController
         _dataManager.DeleteStack(stack.Id);
     }
 
+    public StackDto GetStack(string name)
+    {
+        return new StackDto(_dataManager.GetStack(name));
+    }
+
     public IReadOnlyList<StackDto> GetStacks()
     {
         return _dataManager.GetStacks().Select(x => new StackDto(x)).ToList();

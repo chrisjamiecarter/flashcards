@@ -57,6 +57,27 @@ public partial class SqlDataManager
         }
     }
 
+    public StackEntity GetStack(string name)
+    {
+        using SqlConnection connection = new SqlConnection(ConnectionString);
+        connection.Open();
+
+        using SqlCommand command = connection.CreateCommand();
+        command.CommandText = $"{Schema}.GetStackByName";
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = name;
+
+        using SqlDataReader reader = command.ExecuteReader();
+        if (reader.Read())
+        {
+            return new StackEntity(reader);
+        }
+        else
+        {
+            throw new EntityNotFoundException($"Unable to get Stack where Name = {name}");
+        }
+    }
+
     public IReadOnlyList<StackEntity> GetStacks()
     {
         var output = new List<StackEntity>();
