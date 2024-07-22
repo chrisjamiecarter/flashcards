@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Flashcards.Data\Flashcards.Data.csproj" />
+  </ItemGroup>
+
 </Project>
