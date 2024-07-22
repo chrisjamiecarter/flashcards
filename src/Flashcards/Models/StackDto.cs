@@ -16,6 +16,11 @@ public class StackDto
         Name = entity.Name;
     }
 
+    public StackDto(string name)
+    {
+        Name = name;
+    }
+
     #endregion
     #region Properties
 

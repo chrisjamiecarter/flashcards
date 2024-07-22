@@ -12,9 +12,9 @@ public class StackController
     #endregion
     #region Constructors
 
-    public StackController(SqlDataManager dataManager)
+    public StackController(string connectionString)
     {
-        _dataManager = dataManager;
+        _dataManager = new SqlDataManager(connectionString);
     }
 
     #endregion

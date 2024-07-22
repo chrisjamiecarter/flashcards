@@ -14,6 +14,13 @@ public class FlashcardDto
         Answer = entity.Answer;
     }
 
+    public FlashcardDto(int stackId, string question, string answer)
+    {
+        StackId = stackId;
+        Question = question;
+        Answer = answer;
+    }
+
     #endregion
     #region Properties
 
