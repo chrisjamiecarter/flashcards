@@ -5,13 +5,13 @@ using Spectre.Console;
 namespace Flashcards.ConsoleApp.Views;
 
 /// <summary>
-/// Page which allows users to select a stack to perform an action on.
+/// Page which allows users to select a flashcard to perform an action on.
 /// </summary>
-internal class SelectStackPage : BasePage
+internal class SelectFlashcardPage : BasePage
 {
     #region Constants
 
-    private const string PageTitle = "Select Stack";
+    private const string PageTitle = "Select Flashcard";
 
     #endregion
     #region Properties
@@ -30,24 +30,24 @@ internal class SelectStackPage : BasePage
     #endregion
     #region Methods - Internal
 
-    internal static StackDto? Show(IReadOnlyList<StackDto> stacks)
+    internal static FlashcardDto? Show(IReadOnlyList<FlashcardDto> flashcards)
     {
         AnsiConsole.Clear();
 
         WriteHeader(PageTitle);
 
-        var option = GetOption(stacks);
+        var option = GetOption(flashcards);
         
-        return option.Id == 0 ? null : stacks.First(x => x.Id == option.Id);
+        return option.Id == 0 ? null : flashcards.First(x => x.Id == option.Id);
     }
 
     #endregion
     #region Methods - Private
 
-    private static UserChoice GetOption(IReadOnlyList<StackDto> stacks)
+    private static UserChoice GetOption(IReadOnlyList<FlashcardDto> flashcards)
     {
         // Add the list to the existing PageChoices.
-        IEnumerable<UserChoice> pageChoices = [.. PageChoices, .. stacks.Select(x => new UserChoice(x.Id, x.Name))];
+        IEnumerable<UserChoice> pageChoices = [.. PageChoices, .. flashcards.Select(x => new UserChoice(x.Id, $"{x.Question} = {x.Answer}"))];
 
         return AnsiConsole.Prompt(
                 new SelectionPrompt<UserChoice>()
