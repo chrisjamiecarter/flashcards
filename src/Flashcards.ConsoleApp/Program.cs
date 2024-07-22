@@ -63,7 +63,7 @@ internal class Program
             }
 
             // Show the main menu.
-            var mainMenu = new MainMenuPage();
+            var mainMenu = new MainMenuPage(flashcardController, stackController, studySessionController, studySessionReportController);
             mainMenu.Show();
         }
         catch (Exception exception)
