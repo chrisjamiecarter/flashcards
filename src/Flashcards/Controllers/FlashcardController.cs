@@ -30,6 +30,11 @@ public class FlashcardController
         _dataManager.DeleteFlashcard(flashcard.Id);
     }
 
+    public IReadOnlyList<FlashcardDto> GetFlashcards()
+    {
+        return _dataManager.GetFlashcards().Select(x => new FlashcardDto(x)).ToList();
+    }
+
     public IReadOnlyList<FlashcardDto> GetFlashcards(int stackId)
     {
         return _dataManager.GetFlashcards(stackId).Select(x => new FlashcardDto(x)).ToList();

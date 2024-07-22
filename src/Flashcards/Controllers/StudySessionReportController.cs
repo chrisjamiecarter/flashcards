@@ -20,14 +20,14 @@ public class StudySessionReportController
     #endregion
     #region Methods
 
-    public IReadOnlyList<StudySessionReportDto> GetStudySessionAverageReportByYear(DateTime dateTime)
+    public IReadOnlyList<StudySessionReportDto> GetAverageStudySessionScoreReportByYear(DateTime dateTime)
     {
-        return _dataManager.GetStudySessionAverageReportByYear(dateTime).Select(x => new StudySessionReportDto(x)).ToList();
+        return _dataManager.GetAverageStudySessionScoreReportByYear(dateTime).Select(x => new StudySessionReportDto(x)).ToList();
     }
 
-    public IReadOnlyList<StudySessionReportDto> GetStudySessionTotalReportByYear(DateTime dateTime)
+    public IReadOnlyList<StudySessionReportDto> GetTotalStudySessionsReportByYear(DateTime dateTime)
     {
-        return _dataManager.GetStudySessionTotalReportByYear(dateTime).Select(x => new StudySessionReportDto(x)).ToList();
+        return _dataManager.GetTotalStudySessionsReportByYear(dateTime).Select(x => new StudySessionReportDto(x)).ToList();
     }
 
     #endregion

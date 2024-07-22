@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetStudySessionTotalReportByYear]
+﻿CREATE PROCEDURE [dbo].[GetTotalStudySessionsReportByYear]
 
 	 @Year	NVARCHAR(4)
 
@@ -8,7 +8,7 @@ BEGIN
 	SELECT
 		*
 	FROM
-		[dbo].[vwStudySessionTotalReport]
+		[dbo].[vwTotalStudySessionsReport]
 	WHERE
 		[StudyYear] = @Year
 	ORDER BY
