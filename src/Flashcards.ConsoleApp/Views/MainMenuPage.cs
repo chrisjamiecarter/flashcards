@@ -172,15 +172,22 @@ internal class MainMenuPage : BasePage
         // Get data.
         var data = config.Type switch
         {
-            StudySessionReportType.Average => _studySessionReportController.GetStudySessionAverageReportByYear(config.Date),
-            StudySessionReportType.Total => _studySessionReportController.GetStudySessionTotalReportByYear(config.Date),
+            StudySessionReportType.Average => _studySessionReportController.GetAverageStudySessionScoreReportByYear(config.Date),
+            StudySessionReportType.Total => _studySessionReportController.GetTotalStudySessionsReportByYear(config.Date),
             _ => throw new NotImplementedException("Invalid StudySessionReportType.")
         };
 
         // Configure table data.
+        var tableTitle = config.Type switch
+        {
+            StudySessionReportType.Average => $"Average study session score per month for {config.Date.Year}",
+            StudySessionReportType.Total => $"Total study sessions per month for {config.Date.Year}",
+            _ => throw new NotImplementedException("Invalid StudySessionReportType.")
+        };
+
         var table = new Table
         {
-            Title = new TableTitle($"{config.Type:G} Study Sessions Report for {config.Date.Year}")
+            Title = new TableTitle(tableTitle)
         };
         table.AddColumn("Stack");
         table.AddColumn("January");

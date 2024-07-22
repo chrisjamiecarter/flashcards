@@ -11,7 +11,7 @@ public partial class SqlDataManager
 {
     #region Methods
 
-    public IReadOnlyList<StudySessionReportEntity> GetStudySessionAverageReportByYear(DateTime dateTime)
+    public IReadOnlyList<StudySessionReportEntity> GetAverageStudySessionScoreReportByYear(DateTime dateTime)
     {
         var output = new List<StudySessionReportEntity>();
 
@@ -19,7 +19,7 @@ public partial class SqlDataManager
         connection.Open();
 
         using SqlCommand command = connection.CreateCommand();
-        command.CommandText = $"{Schema}.GetStudySessionAverageReportByYear";
+        command.CommandText = $"{Schema}.GetAverageStudySessionScoreReportByYear";
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@Year", SqlDbType.NVarChar).Value = dateTime.ToString("yyyy");
 
@@ -32,7 +32,7 @@ public partial class SqlDataManager
         return output;
     }
 
-    public IReadOnlyList<StudySessionReportEntity> GetStudySessionTotalReportByYear(DateTime dateTime)
+    public IReadOnlyList<StudySessionReportEntity> GetTotalStudySessionsReportByYear(DateTime dateTime)
     {
         var output = new List<StudySessionReportEntity>();
 
@@ -40,7 +40,7 @@ public partial class SqlDataManager
         connection.Open();
 
         using SqlCommand command = connection.CreateCommand();
-        command.CommandText = $"{Schema}.GetStudySessionTotalReportByYear";
+        command.CommandText = $"{Schema}.GetTotalStudySessionsReportByYear";
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@Year", SqlDbType.NVarChar).Value = dateTime.ToString("yyyy");
 

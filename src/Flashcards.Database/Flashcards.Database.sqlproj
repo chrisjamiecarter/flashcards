@@ -80,10 +80,10 @@
     <Build Include="dbo\Stored Procedures\SetStack.sql" />
     <Build Include="dbo\Stored Procedures\AddStudySession.sql" />
     <Build Include="dbo\Stored Procedures\GetStudySessions.sql" />
-    <Build Include="dbo\Stored Procedures\GetStudySessionAverageReportByYear.sql" />
-    <Build Include="dbo\Views\vwStudySessionAverageReport.sql" />
-    <Build Include="dbo\Views\vwStudySessionTotalReport.sql" />
-    <Build Include="dbo\Stored Procedures\GetStudySessionTotalReportByYear.sql" />
+    <Build Include="dbo\Stored Procedures\GetAverageStudySessionScoreReportByYear.sql" />
+    <Build Include="dbo\Views\vwAverageStudySessionScoreReport.sql" />
+    <Build Include="dbo\Views\vwTotalStudySessionsReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetTotalStudySessionsReportByYear.sql" />
     <Build Include="dbo\Stored Procedures\GetStackByName.sql" />
   </ItemGroup>
   <ItemGroup>

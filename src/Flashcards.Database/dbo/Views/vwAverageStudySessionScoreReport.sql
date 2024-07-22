@@ -1,4 +1,4 @@
-﻿CREATE VIEW [dbo].[vwStudySessionAverageReport] 
+﻿CREATE VIEW [dbo].[vwAverageStudySessionScoreReport] 
 AS
 	SELECT
 		 [StackName]

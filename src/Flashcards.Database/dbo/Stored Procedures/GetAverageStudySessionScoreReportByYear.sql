@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetStudySessionAverageReportByYear]
+﻿CREATE PROCEDURE [dbo].[GetAverageStudySessionScoreReportByYear]
 
 	 @Year	NVARCHAR(4)
 
@@ -8,7 +8,7 @@ BEGIN
 	SELECT
 		*
 	FROM
-		[dbo].[vwStudySessionAverageReport]
+		[dbo].[vwAverageStudySessionScoreReport]
 	WHERE
 		[StudyYear] = @Year
 	ORDER BY

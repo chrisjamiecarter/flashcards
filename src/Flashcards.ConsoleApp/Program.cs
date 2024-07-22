@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using Flashcards.ConsoleApp.Extensions;
+using Flashcards.ConsoleApp.Models;
 using Flashcards.ConsoleApp.Services;
 using Flashcards.ConsoleApp.Views;
 using Flashcards.Controllers;
@@ -48,15 +49,29 @@ internal class Program
                             {
                                 flashcardController.AddFlashcard(new FlashcardDto(stackDto.Id, flashcard.Question, flashcard.Answer));
                             }
+                        }
 
-                            // Add a random amount of study sessions for each stack.
-                            for (int i = 0; i < Random.Shared.Next(1, 21); i++)
-                            {
-                                // Randomise DateTime and Score.
-                                DateTime dateTime = DateTime.Now.AddDays(-Random.Shared.Next(0, 20)).AddMonths(-Random.Shared.Next(0, 20));
-                                int score = Random.Shared.Next(0, stack.Flashcards.Count + 1);
-                                studySessionController.AddStudySession(new StudySessionDto(stackDto.Id, dateTime, score));
-                            }
+                        // Generate a hundred random study session datetimes within this and the last year.
+                        var studySessionDates = new List<DateTime>();
+                        var startOfLastYear = new DateTime(DateTime.Now.Year - 1, 1, 1);
+                        int range = (DateTime.Now - startOfLastYear).Days;
+                        for (int i = 0; i < 100; i++)
+                        {
+                            var dateTime = startOfLastYear.AddDays(Random.Shared.Next(range)).AddHours(Random.Shared.Next(0, 24)).AddMinutes(Random.Shared.Next(0, 60)).AddSeconds(Random.Shared.Next(0, 60));
+                            studySessionDates.Add(dateTime);
+                        }
+
+                        // Order by date, and then apply a random score to a random stack.
+                        studySessionDates.Sort();
+                        var stacks = stackController.GetStacks();
+                        var flashcards = flashcardController.GetFlashcards();
+                        foreach(var dateTime in studySessionDates)
+                        {
+                            var stack = stacks[Random.Shared.Next(0, stacks.Count)];
+                            var flashcardsCount = flashcards.Count(c => c.StackId == stack.Id);
+                            int score = Random.Shared.Next(0, flashcardsCount + 1);
+                            studySessionController.AddStudySession(new StudySessionDto(stack.Id, dateTime, score));
+
                         }
                     });
                 AnsiConsole.WriteLine("Seed data generated.");
