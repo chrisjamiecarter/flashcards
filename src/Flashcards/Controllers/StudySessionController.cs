@@ -12,9 +12,9 @@ public class StudySessionController
     #endregion
     #region Constructors
     
-    public StudySessionController(SqlDataManager dataManager)
+    public StudySessionController(string connectionString)
     {
-        _dataManager = dataManager;
+        _dataManager = new SqlDataManager(connectionString);
     }
 
     #endregion

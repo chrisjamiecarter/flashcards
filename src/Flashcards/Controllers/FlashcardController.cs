@@ -12,9 +12,9 @@ public class FlashcardController
     #endregion
     #region Constructors
 
-    public FlashcardController(SqlDataManager dataManager)
+    public FlashcardController(string connectionString)
     {
-        _dataManager = dataManager;
+        _dataManager = new SqlDataManager(connectionString);
     }
 
     #endregion

@@ -14,6 +14,13 @@ public class StudySessionDto
         Score = entity.Score;
     }
 
+    public StudySessionDto(int stackId, DateTime dateTime, int score)
+    {
+        StackId = stackId;
+        DateTime = dateTime;
+        Score = score;
+    }
+
     #endregion
     #region Properties
 
