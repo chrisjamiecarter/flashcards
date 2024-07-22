@@ -25,6 +25,11 @@ public class FlashcardController
         _dataManager.AddFlashcard(flashcard.StackId, flashcard.Question, flashcard.Answer);
     }
 
+    public void DeleteFlashcard(int id)
+    {
+        _dataManager.DeleteFlashcard(id);
+    }
+
     public void DeleteFlashcard(FlashcardDto flashcard)
     {
         _dataManager.DeleteFlashcard(flashcard.Id);
@@ -38,6 +43,11 @@ public class FlashcardController
     public IReadOnlyList<FlashcardDto> GetFlashcards(int stackId)
     {
         return _dataManager.GetFlashcards(stackId).Select(x => new FlashcardDto(x)).ToList();
+    }
+
+    public void SetFlashcard(int id, string question, string answer)
+    {
+        _dataManager.SetFlashcard(id, question, answer);
     }
 
     public void SetFlashcard(FlashcardDto flashcard)

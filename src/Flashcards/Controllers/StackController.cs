@@ -20,9 +20,19 @@ public class StackController
     #endregion
     #region Methods
 
+    public void AddStack(string name)
+    {
+        _dataManager.AddStack(name);
+    }
+
     public void AddStack(StackDto stack)
     {
         _dataManager.AddStack(stack.Name);
+    }
+
+    public void DeleteStack(int id)
+    {
+        _dataManager.DeleteStack(id);
     }
 
     public void DeleteStack(StackDto stack)
@@ -38,6 +48,11 @@ public class StackController
     public IReadOnlyList<StackDto> GetStacks()
     {
         return _dataManager.GetStacks().Select(x => new StackDto(x)).ToList();
+    }
+
+    public void SetStack(int id, string name)
+    {
+        _dataManager.SetStack(id, name);
     }
 
     public void SetStack(StackDto stack)

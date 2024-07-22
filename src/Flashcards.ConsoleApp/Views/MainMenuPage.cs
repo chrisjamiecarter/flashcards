@@ -111,13 +111,13 @@ internal class MainMenuPage : BasePage
             case 4:
 
                 // Manage stacks.
-                
+                ManageStacks();
                 break;
 
             case 5:
 
                 // Manage flashcards.
-                
+                ManageFlashcards();
                 break;
 
             default:
@@ -127,6 +127,28 @@ internal class MainMenuPage : BasePage
         }
 
         return PageStatus.Opened;
+    }
+
+    private void ManageFlashcards()
+    {
+        // Get raw data.
+        var stacks = _stackController.GetStacks();
+
+        // Get stack to manage, or stop.
+        StackDto? stack = SelectStackPage.Show(stacks);
+        if (stack == null)
+        {
+            return;
+        }
+
+        var manageFlashcardsPage = new ManageFlashcardsPage(_flashcardController, stack);
+        manageFlashcardsPage.Show();
+    }
+
+    private void ManageStacks()
+    {
+        var manageStackPage = new ManageStacksPage(_stackController);
+        manageStackPage.Show();
     }
 
     private void Study()
