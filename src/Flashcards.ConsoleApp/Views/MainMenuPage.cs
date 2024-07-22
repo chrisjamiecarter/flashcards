@@ -2,6 +2,7 @@
 using Flashcards.ConsoleApp.Models;
 using Flashcards.Controllers;
 using Flashcards.Enums;
+using Flashcards.Models;
 using Spectre.Console;
 
 namespace Flashcards.ConsoleApp.Views;
@@ -78,7 +79,7 @@ internal class MainMenuPage : BasePage
     }
 
     #endregion
-    #region Methods
+    #region Methods - Private
 
     private PageStatus PerformOption(UserChoice option)
     {
@@ -92,7 +93,7 @@ internal class MainMenuPage : BasePage
             case 1:
 
                 // Study.
-                
+                Study();
                 break;
 
             case 2:
@@ -126,6 +127,42 @@ internal class MainMenuPage : BasePage
         }
 
         return PageStatus.Opened;
+    }
+
+    private void Study()
+    {
+        // Get raw data.
+        var stacks = _stackController.GetStacks();
+
+        // Leave this page open until user is ready to stop studying.
+        while (true)
+        {
+            // Get stack to study, or stop studying.
+            StackDto? stack = SelectStackPage.Show(stacks);
+            if (stack == null)
+            {
+                return;
+            }
+            
+            // Get flashcards for selected stack.
+            var flashcards = _flashcardController.GetFlashcards(stack.Id);
+            
+            // Can only study a stack with flashcards.
+            if (flashcards.Count == 0)
+            {
+                MessagePage.Show("Error", $"The '{stack.Name}' stack contains no flashcards to study.");
+                break;
+            }            
+
+            // Study and get a score.
+            int score = StudyStackPage.Show(stack, flashcards);
+
+            // Add session to database.
+            _studySessionController.AddStudySession(stack.Id, score);
+
+            // Display score.
+            MessagePage.Show("Study", $"You scored {score} out of {flashcards.Count}!");
+        }
     }
 
     private void ViewStudySessions()
@@ -230,7 +267,6 @@ internal class MainMenuPage : BasePage
         // Display report.
         MessagePage.Show("Study Sessions Report", table);
     }
-
 
     #endregion
 }

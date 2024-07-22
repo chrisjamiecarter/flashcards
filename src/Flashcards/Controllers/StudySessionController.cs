@@ -20,6 +20,11 @@ public class StudySessionController
     #endregion
     #region Methods
 
+    public void AddStudySession(int stackId, int score)
+    {
+        _dataManager.AddStudySession(stackId, DateTime.Now, score);
+    }
+
     public void AddStudySession(StudySessionDto studySession)
     {
         _dataManager.AddStudySession(studySession.StackId, studySession.DateTime, studySession.Score);

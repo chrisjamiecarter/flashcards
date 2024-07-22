@@ -29,4 +29,8 @@ internal static class UserInputService
         }
     }
 
+    internal static string GetString(string prompt)
+    {
+        return AnsiConsole.Ask<string>(prompt);
+    }
 }
