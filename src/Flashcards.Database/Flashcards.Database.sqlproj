@@ -84,6 +84,7 @@
     <Build Include="dbo\Views\vwStudySessionAverageReport.sql" />
     <Build Include="dbo\Views\vwStudySessionTotalReport.sql" />
     <Build Include="dbo\Stored Procedures\GetStudySessionTotalReportByYear.sql" />
+    <Build Include="dbo\Stored Procedures\GetStackByName.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Flashcards.Database.refactorlog" />
