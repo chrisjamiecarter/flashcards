@@ -3,6 +3,9 @@ using Flashcards.Models;
 
 namespace Flashcards.Services;
 
+/// <summary>
+/// Service to handle all user input validation.
+/// </summary>
 public static class UserInputValidationService
 {
     #region Methods

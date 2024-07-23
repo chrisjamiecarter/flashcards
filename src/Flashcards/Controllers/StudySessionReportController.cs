@@ -3,6 +3,9 @@ using Flashcards.Models;
 
 namespace Flashcards.Controllers;
 
+/// <summary>
+/// Controller for all interactions between the StudySessionReport model and entity.
+/// </summary>
 public class StudySessionReportController
 {
     #region Fields

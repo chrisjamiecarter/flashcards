@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Flashcards.Models;
+﻿namespace Flashcards.Models;
 
 /// <summary>
 /// The result of a validation action on a user input and the output message.
-/// NOTE: Not named ValidationResult as clashes with the Spectre Console library used in the console application.
+/// NOTE: I have not simply named ValidationResult as it clashes with the Spectre Console library used in the console application.
 /// </summary>
 public class UserInputValidationResult
 {

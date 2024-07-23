@@ -7,6 +7,9 @@ using Spectre.Console;
 
 namespace Flashcards.ConsoleApp.Views;
 
+/// <summary>
+/// Page which allows users to confgure the study session report.
+/// </summary>
 internal class ConfigureStudySessionReportPage : BasePage
 {
     #region Constants

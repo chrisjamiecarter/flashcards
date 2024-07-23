@@ -2,6 +2,9 @@
 
 namespace Flashcards.Models;
 
+/// <summary>
+/// Presentation version of the Flashcard object.
+/// </summary>
 public class FlashcardDto
 {
     #region Constructors

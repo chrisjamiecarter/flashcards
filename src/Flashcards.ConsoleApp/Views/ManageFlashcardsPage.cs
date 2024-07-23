@@ -1,7 +1,6 @@
 ﻿using Flashcards.ConsoleApp.Enums;
 using Flashcards.ConsoleApp.Models;
 using Flashcards.Controllers;
-using Flashcards.Enums;
 using Flashcards.Models;
 using Spectre.Console;
 
@@ -116,7 +115,7 @@ internal class ManageFlashcardsPage : BasePage
         }
 
         // Commit to database.
-        _flashcardController.AddFlashcard(flashcard);
+        _flashcardController.AddFlashcard(flashcard.StackId, flashcard.Question, flashcard.Answer);
 
         // Show message.
         MessagePage.Show("Create Flashcard", "Flashcard created successfully.");

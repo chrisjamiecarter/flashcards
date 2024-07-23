@@ -2,6 +2,9 @@
 
 namespace Flashcards.Models;
 
+/// <summary>
+/// Presentation version of the StudySession object.
+/// </summary>
 public class StudySessionDto
 {
     #region Constructors

@@ -2,6 +2,9 @@
 
 namespace Flashcards.Data.Extensions;
 
+/// <summary>
+/// DateTime class extension methods.
+/// </summary>
 internal static class IDataReaderExtensions
 {
     internal static DateTime GetDateTime(this IDataReader reader, string columnName)

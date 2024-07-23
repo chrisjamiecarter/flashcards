@@ -1,13 +1,11 @@
-﻿using System.Runtime.Serialization;
-using Flashcards.ConsoleApp.Models;
-using Flashcards.ConsoleApp.Services;
+﻿using Flashcards.ConsoleApp.Services;
 using Flashcards.Models;
 using Spectre.Console;
 
 namespace Flashcards.ConsoleApp.Views;
 
 /// <summary>
-/// Page which allows users to study a Stack of flashcards and return a score.
+/// Page which allows users to study a stack of flashcards and return a score.
 /// </summary>
 internal class StudyStackPage : BasePage
 {
@@ -16,10 +14,7 @@ internal class StudyStackPage : BasePage
     private const string PageTitle = "Study Stack";
 
     #endregion
-    #region Properties
-        
-    #endregion
-    #region Methods - Internal
+    #region Methods
 
     internal static int Show(StackDto stack, IReadOnlyList<FlashcardDto> flashcards)
     {

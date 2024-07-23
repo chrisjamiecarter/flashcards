@@ -3,6 +3,9 @@ using Flashcards.Models;
 
 namespace Flashcards.Controllers;
 
+/// <summary>
+/// Controller for all interactions between the Flashcard model and entity.
+/// </summary>
 public class FlashcardController
 {
     #region Fields
@@ -20,19 +23,14 @@ public class FlashcardController
     #endregion
     #region Methods
 
-    public void AddFlashcard(FlashcardDto flashcard)
+    public void AddFlashcard(int stackId, string question, string answer)
     {
-        _dataManager.AddFlashcard(flashcard.StackId, flashcard.Question, flashcard.Answer);
+        _dataManager.AddFlashcard(stackId, question, answer);
     }
 
     public void DeleteFlashcard(int id)
     {
         _dataManager.DeleteFlashcard(id);
-    }
-
-    public void DeleteFlashcard(FlashcardDto flashcard)
-    {
-        _dataManager.DeleteFlashcard(flashcard.Id);
     }
 
     public IReadOnlyList<FlashcardDto> GetFlashcards()
@@ -48,11 +46,6 @@ public class FlashcardController
     public void SetFlashcard(int id, string question, string answer)
     {
         _dataManager.SetFlashcard(id, question, answer);
-    }
-
-    public void SetFlashcard(FlashcardDto flashcard)
-    {
-        _dataManager.SetFlashcard(flashcard.Id, flashcard.Question, flashcard.Answer);
     }
 
     #endregion
