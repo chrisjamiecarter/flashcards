@@ -15,7 +15,7 @@ internal class UpdateFlashcardPage : BasePage
     private const string PageTitle = "Update Flashcard";
 
     #endregion
-    #region Methods - Internal
+    #region Methods
 
     internal static FlashcardDto? Show(FlashcardDto flashcard, string stackName)
     {

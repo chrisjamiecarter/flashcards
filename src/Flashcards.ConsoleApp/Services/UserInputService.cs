@@ -9,6 +9,8 @@ namespace Flashcards.ConsoleApp.Services;
 /// </summary>
 internal static class UserInputService
 {
+    #region Methods
+    
     internal static DateTime? GetDateTime(string prompt, string format, Func<string, UserInputValidationResult> validate)
     {
         while (true)
@@ -33,4 +35,6 @@ internal static class UserInputService
     {
         return AnsiConsole.Ask<string>(prompt);
     }
+
+    #endregion
 }

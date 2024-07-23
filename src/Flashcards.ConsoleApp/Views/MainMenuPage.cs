@@ -87,36 +87,30 @@ internal class MainMenuPage : BasePage
         {
             case 0:
 
-                // Close application.
                 return PageStatus.Closed;
 
             case 1:
 
-                // Study.
                 Study();
                 break;
 
             case 2:
 
-                // View all study sessions.
                 ViewStudySessions();
                 break;
 
             case 3:
 
-                // View study sessions report.
                 ViewStudySessionsReport();
                 break;
 
             case 4:
 
-                // Manage stacks.
                 ManageStacks();
                 break;
 
             case 5:
 
-                // Manage flashcards.
                 ManageFlashcards();
                 break;
 

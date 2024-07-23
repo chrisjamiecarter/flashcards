@@ -2,14 +2,13 @@
 
 namespace Flashcards.Models;
 
+/// <summary>
+/// Presentation version of the Stack object.
+/// </summary>
 public class StackDto
 {
     #region Constructors
 
-    /// <summary>
-    /// Maps a Stack Entity to a Stack DTO.
-    /// </summary>
-    /// <param name="entity">The Stack Entity to map.</param>
     public StackDto(StackEntity entity)
     {
         Id = entity.Id;

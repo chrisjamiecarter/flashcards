@@ -1,5 +1,4 @@
-﻿using Flashcards.ConsoleApp.Models;
-using Flashcards.ConsoleApp.Services;
+﻿using Flashcards.ConsoleApp.Services;
 using Flashcards.Models;
 using Spectre.Console;
 

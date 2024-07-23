@@ -15,7 +15,7 @@ internal class UpdateStackPage : BasePage
     private const string PageTitle = "Update Stack";
 
     #endregion
-    #region Methods - Internal
+    #region Methods
 
     internal static StackDto? Show(StackDto stack)
     {

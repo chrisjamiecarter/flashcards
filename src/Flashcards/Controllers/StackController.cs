@@ -3,6 +3,9 @@ using Flashcards.Models;
 
 namespace Flashcards.Controllers;
 
+/// <summary>
+/// Controller for all interactions between the Stack model and entity.
+/// </summary>
 public class StackController
 {
     #region Fields
@@ -25,19 +28,9 @@ public class StackController
         _dataManager.AddStack(name);
     }
 
-    public void AddStack(StackDto stack)
-    {
-        _dataManager.AddStack(stack.Name);
-    }
-
     public void DeleteStack(int id)
     {
         _dataManager.DeleteStack(id);
-    }
-
-    public void DeleteStack(StackDto stack)
-    {
-        _dataManager.DeleteStack(stack.Id);
     }
 
     public StackDto GetStack(string name)
@@ -53,11 +46,6 @@ public class StackController
     public void SetStack(int id, string name)
     {
         _dataManager.SetStack(id, name);
-    }
-
-    public void SetStack(StackDto stack)
-    {
-        _dataManager.SetStack(stack.Id, stack.Name);
     }
 
     #endregion

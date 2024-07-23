@@ -3,6 +3,9 @@ using Flashcards.Data.Extensions;
 
 namespace Flashcards.Data.Entities;
 
+/// <summary>
+/// Database version of the Flashcard object.
+/// </summary>
 public class FlashcardEntity
 {
     #region Constructors

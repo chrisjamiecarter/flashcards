@@ -1,7 +1,6 @@
 ﻿using Flashcards.ConsoleApp.Enums;
 using Flashcards.ConsoleApp.Models;
 using Flashcards.Controllers;
-using Flashcards.Enums;
 using Flashcards.Models;
 using Spectre.Console;
 
