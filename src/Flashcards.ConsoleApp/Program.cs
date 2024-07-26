@@ -38,7 +38,6 @@ internal class Program
                     .Start("Generating seed data. Please wait...", ctx =>
                     {
                         seedController.SeedDatabase();
-                        
                     });
                 AnsiConsole.WriteLine("Seed data generated.");
             }
