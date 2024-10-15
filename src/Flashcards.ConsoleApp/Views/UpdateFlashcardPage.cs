@@ -23,11 +23,10 @@ internal class UpdateFlashcardPage : BasePage
 
         // Show user the flashcard which is being updated.
         var table = new Table();
-        table.AddColumn("ID");
         table.AddColumn("Stack Name");
         table.AddColumn("Question");
         table.AddColumn("Answer");
-        table.AddRow(flashcard.Id.ToString(), stackName, flashcard.Question, flashcard.Answer);
+        table.AddRow(stackName, flashcard.Question, flashcard.Answer);
 
         var question = UserInputService.GetString($"Enter the updated [blue]question[/] for this flashcard, or [blue]0[/] to cancel updating: ");
         if (question == "0")

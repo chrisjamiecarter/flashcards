@@ -1,5 +1,6 @@
 ﻿using Flashcards.ConsoleApp.Enums;
 using Flashcards.ConsoleApp.Models;
+using Flashcards.ConsoleApp.Services;
 using Flashcards.Controllers;
 using Flashcards.Models;
 using Spectre.Console;
@@ -52,21 +53,21 @@ internal class ManageFlashcardsPage : BasePage
 
     internal void Show()
     {
-        var status = PageStatus.Opened;
+        var choice = MenuChoice.Default;
 
-        while (status != PageStatus.Closed)
+        while (choice != MenuChoice.ClosePage)
         {
             WriteHeader(PageTitle);
 
-            var choice = UserInputService.GetSelectionChoice(PromptTitle, PageChoices);
-            status = PerformOption(choice);
+            var option = UserInputService.GetSelectionChoice(PromptTitle, PageChoices);
+            choice = PerformOption(option);
         }
     }
 
     #endregion
     #region Methods - Private
 
-    private SelectionChoice PerformOption(SelectionChoice option)
+    private MenuChoice PerformOption(SelectionChoice option)
     {
         switch (option.Id)
         {
@@ -91,10 +92,10 @@ internal class ManageFlashcardsPage : BasePage
             default:
 
                 // Close page.
-                return PageStatus.Closed;
+                return MenuChoice.ClosePage;
         }
 
-        return PageStatus.Opened;
+        return MenuChoice.Default;
     }
 
     private void AddFlashcard()

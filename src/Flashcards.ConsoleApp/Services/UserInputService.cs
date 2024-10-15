@@ -4,6 +4,7 @@ using Flashcards.ConsoleApp.Enums;
 using Flashcards.ConsoleApp.Extensions;
 using Flashcards.ConsoleApp.Models;
 using Spectre.Console;
+using Flashcards.Extensions;
 
 namespace Flashcards.ConsoleApp.Services;
 
@@ -50,7 +51,7 @@ internal static class UserInputService
                 new SelectionPrompt<SelectionChoice>()
                 .Title(prompt)
                 .AddChoices(choices)
-                .UseConverter(c => c.Name)
+                .UseConverter(c => c.Name!)
                 );
     }
 
