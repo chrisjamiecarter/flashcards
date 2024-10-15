@@ -1,5 +1,8 @@
 ﻿using System.Globalization;
 using Flashcards.Models;
+using Flashcards.ConsoleApp.Enums;
+using Flashcards.ConsoleApp.Extensions;
+using Flashcards.ConsoleApp.Models;
 using Spectre.Console;
 
 namespace Flashcards.ConsoleApp.Services;
@@ -29,6 +32,26 @@ internal static class UserInputService
 
             AnsiConsole.WriteLine(validationResult.Message);
         }
+    }
+
+    internal static MenuChoice GetMenuChoice(string prompt, IEnumerable<MenuChoice> choices)
+    {
+        return AnsiConsole.Prompt(
+                new SelectionPrompt<MenuChoice>()
+                .Title(prompt)
+                .AddChoices(choices)
+                .UseConverter(c => c.GetDescription())
+                );
+    }
+
+    internal static SelectionChoice GetSelectionChoice(string prompt, IEnumerable<SelectionChoice> choices)
+    {
+        return AnsiConsole.Prompt(
+                new SelectionPrompt<SelectionChoice>()
+                .Title(prompt)
+                .AddChoices(choices)
+                .UseConverter(c => c.Name)
+                );
     }
 
     internal static string GetString(string prompt)

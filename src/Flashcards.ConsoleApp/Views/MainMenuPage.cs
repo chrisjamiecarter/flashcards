@@ -1,7 +1,8 @@
 ﻿using Flashcards.ConsoleApp.Enums;
-using Flashcards.ConsoleApp.Models;
+using Flashcards.ConsoleApp.Services;
 using Flashcards.Controllers;
 using Flashcards.Enums;
+using Flashcards.Extensions;
 using Flashcards.Models;
 using Spectre.Console;
 
@@ -24,6 +25,17 @@ internal class MainMenuPage : BasePage
     private readonly StudySessionController _studySessionController;
     private readonly StudySessionReportController _studySessionReportController;
 
+    private readonly MenuChoice[] _pageChoices =
+    [
+        MenuChoice.Study,
+        MenuChoice.ViewStudySessions,
+        MenuChoice.ViewStudySessionsReport,
+        MenuChoice.ManageStacks,
+        MenuChoice.ManageFlashcards,
+        MenuChoice.CloseApplication,
+    ];
+
+
     #endregion
     #region Constructors
 
@@ -36,92 +48,42 @@ internal class MainMenuPage : BasePage
     }
 
     #endregion
-    #region Properties
-
-    internal static IEnumerable<UserChoice> PageChoices
-    {
-        get
-        {
-            return
-            [
-                new(1, "Study"),
-                new(2, "View all study sessions"),
-                new(3, "View study sessions report"),
-                new(4, "Manage stacks"),
-                new(5, "Manage flashcards"),
-                new(0, "Close application")
-            ];
-        }
-    }
-
-    #endregion
     #region Methods - Internal
 
     internal void Show()
     {
-        var status = PageStatus.Opened;
+        var choice = MenuChoice.Default;
 
-        while (status != PageStatus.Closed)
+        while (choice != MenuChoice.CloseApplication)
         {
-            AnsiConsole.Clear();
-
             WriteHeader(PageTitle);
 
-            var option = AnsiConsole.Prompt(
-                new SelectionPrompt<UserChoice>()
-                .Title(PromptTitle)
-                .AddChoices(PageChoices)
-                .UseConverter(c => c.Name!)
-                );
-
-            status = PerformOption(option);
+            choice = UserInputService.GetMenuChoice(PromptTitle, _pageChoices);
+            switch (choice)
+            {
+                case MenuChoice.Study:
+                    Study();
+                    break;
+                case MenuChoice.ViewStudySessions:
+                    ViewStudySessions();
+                    break;
+                case MenuChoice.ViewStudySessionsReport:
+                    ViewStudySessionsReport();
+                    break;
+                case MenuChoice.ManageStacks:
+                    ManageStacks();
+                    break;
+                case MenuChoice.ManageFlashcards:
+                    ManageFlashcards();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     #endregion
     #region Methods - Private
-
-    private PageStatus PerformOption(UserChoice option)
-    {
-        switch (option.Id)
-        {
-            case 0:
-
-                return PageStatus.Closed;
-
-            case 1:
-
-                Study();
-                break;
-
-            case 2:
-
-                ViewStudySessions();
-                break;
-
-            case 3:
-
-                ViewStudySessionsReport();
-                break;
-
-            case 4:
-
-                ManageStacks();
-                break;
-
-            case 5:
-
-                ManageFlashcards();
-                break;
-
-            default:
-
-                // Do nothing, but remain on this page.
-                break;
-        }
-
-        return PageStatus.Opened;
-    }
 
     private void ManageFlashcards()
     {
@@ -159,16 +121,16 @@ internal class MainMenuPage : BasePage
             {
                 return;
             }
-            
+
             // Get flashcards for selected stack.
             var flashcards = _flashcardController.GetFlashcards(stack.Id);
-            
+
             // Can only study a stack with flashcards.
             if (flashcards.Count == 0)
             {
                 MessagePage.Show("Error", $"The '{stack.Name}' stack contains no flashcards to study.");
                 break;
-            }            
+            }
 
             // Study and get a score.
             int score = StudyStackPage.Show(stack, flashcards);

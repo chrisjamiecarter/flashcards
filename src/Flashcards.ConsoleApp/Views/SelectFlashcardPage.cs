@@ -16,7 +16,7 @@ internal class SelectFlashcardPage : BasePage
     #endregion
     #region Properties
 
-    internal static IEnumerable<UserChoice> PageChoices
+    internal static IEnumerable<SelectionChoice> PageChoices
     {
         get
         {
@@ -32,8 +32,6 @@ internal class SelectFlashcardPage : BasePage
 
     internal static FlashcardDto? Show(IReadOnlyList<FlashcardDto> flashcards)
     {
-        AnsiConsole.Clear();
-
         WriteHeader(PageTitle);
 
         var option = GetOption(flashcards);
@@ -44,17 +42,12 @@ internal class SelectFlashcardPage : BasePage
     #endregion
     #region Methods - Private
 
-    private static UserChoice GetOption(IReadOnlyList<FlashcardDto> flashcards)
+    private static SelectionChoice GetOption(IReadOnlyList<FlashcardDto> flashcards)
     {
         // Add the list to the existing PageChoices.
-        IEnumerable<UserChoice> pageChoices = [.. flashcards.Select(x => new UserChoice(x.Id, $"{x.Question} = {x.Answer}")), .. PageChoices];
+        IEnumerable<SelectionChoice> pageChoices = [.. flashcards.Select(x => new SelectionChoice(x.Id, $"{x.Question} = {x.Answer}")), .. PageChoices];
 
-        return AnsiConsole.Prompt(
-                new SelectionPrompt<UserChoice>()
-                .Title(PromptTitle)
-                .AddChoices(pageChoices)
-                .UseConverter(c => c.Name!)
-                );
+        return UserInputService.GetSelectionChoice(PromptTitle, pageChoices);
     }
 
     #endregion

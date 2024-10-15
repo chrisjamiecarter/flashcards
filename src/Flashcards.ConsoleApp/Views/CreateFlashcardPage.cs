@@ -18,8 +18,6 @@ internal class CreateFlashcardPage : BasePage
 
     internal static FlashcardDto? Show(int stackId)
     {
-        AnsiConsole.Clear();
-
         WriteHeader(PageTitle);
         
         var question = UserInputService.GetString($"Enter the [blue]question[/] for this flashcard, or [blue]0[/] to cancel creating: ");

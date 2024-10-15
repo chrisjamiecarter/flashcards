@@ -1,5 +1,6 @@
 ﻿using Flashcards.ConsoleApp.Enums;
 using Flashcards.ConsoleApp.Models;
+using Flashcards.ConsoleApp.Services;
 using Flashcards.Controllers;
 using Flashcards.Models;
 using Spectre.Console;
@@ -31,7 +32,7 @@ internal class ManageStacksPage : BasePage
     #endregion
     #region Properties
     
-    internal static IEnumerable<UserChoice> PageChoices
+    internal static IEnumerable<SelectionChoice> PageChoices
     {
         get
         {
@@ -54,25 +55,17 @@ internal class ManageStacksPage : BasePage
 
         while (status != PageStatus.Closed)
         {
-            AnsiConsole.Clear();
-
             WriteHeader(PageTitle);
 
-            var option = AnsiConsole.Prompt(
-                new SelectionPrompt<UserChoice>()
-                .Title(PromptTitle)
-                .AddChoices(PageChoices)
-                .UseConverter(c => c.Name!)
-                );
-
-            status = PerformOption(option);
+            var choice = UserInputService.GetSelectionChoice(PromptTitle, PageChoices);
+            status = PerformOption(choice);
         }
     }
 
     #endregion
     #region Methods - Private
 
-    private PageStatus PerformOption(UserChoice option)
+    private SelectionChoice PerformOption(SelectionChoice option)
     {
         switch (option.Id)
         {

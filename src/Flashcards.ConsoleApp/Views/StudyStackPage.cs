@@ -22,8 +22,6 @@ internal class StudyStackPage : BasePage
 
         for (int i = 0; i < flashcards.Count; i++)
         {
-            AnsiConsole.Clear();
-            
             WriteHeader($"{PageTitle}: {stack.Name}");
 
             AnsiConsole.WriteLine($"Question {i + 1} of {flashcards.Count}:");

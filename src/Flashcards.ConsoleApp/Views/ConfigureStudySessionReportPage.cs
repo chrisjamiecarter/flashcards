@@ -19,7 +19,7 @@ internal class ConfigureStudySessionReportPage : BasePage
     #endregion
     #region Properties
 
-    internal static IEnumerable<UserChoice> StudySessionReportTypeChoices
+    internal static IEnumerable<SelectionChoice> StudySessionReportTypeChoices
     {
         get
         {
@@ -37,17 +37,9 @@ internal class ConfigureStudySessionReportPage : BasePage
 
     internal static StudySessionReportConfiguration? Show()
     {
-        AnsiConsole.Clear();
-
         WriteHeader(PageTitle);
 
-        var choice = AnsiConsole.Prompt(
-            new SelectionPrompt<UserChoice>()
-            .Title(PromptTitle)
-            .AddChoices(StudySessionReportTypeChoices)
-            .UseConverter(c => c.Name!)
-            );
-
+        var choice = UserInputService.GetSelectionChoice(PromptTitle, StudySessionReportTypeChoices);
         if (choice.Id == 0)
         {
             // Close page.

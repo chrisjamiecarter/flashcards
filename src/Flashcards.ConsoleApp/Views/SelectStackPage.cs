@@ -16,7 +16,7 @@ internal class SelectStackPage : BasePage
     #endregion
     #region Properties
 
-    internal static IEnumerable<UserChoice> PageChoices
+    internal static IEnumerable<SelectionChoice> PageChoices
     {
         get
         {
@@ -32,8 +32,6 @@ internal class SelectStackPage : BasePage
 
     internal static StackDto? Show(IReadOnlyList<StackDto> stacks)
     {
-        AnsiConsole.Clear();
-
         WriteHeader(PageTitle);
 
         var option = GetOption(stacks);
@@ -44,17 +42,12 @@ internal class SelectStackPage : BasePage
     #endregion
     #region Methods - Private
 
-    private static UserChoice GetOption(IReadOnlyList<StackDto> stacks)
+    private static SelectionChoice GetOption(IReadOnlyList<StackDto> stacks)
     {
         // Add the list to the existing PageChoices.
-        IEnumerable<UserChoice> pageChoices = [.. stacks.Select(x => new UserChoice(x.Id, x.Name)), .. PageChoices];
+        IEnumerable<SelectionChoice> pageChoices = [.. stacks.Select(x => new SelectionChoice(x.Id, x.Name)), .. PageChoices];
 
-        return AnsiConsole.Prompt(
-                new SelectionPrompt<UserChoice>()
-                .Title(PromptTitle)
-                .AddChoices(pageChoices)
-                .UseConverter(c => c.Name!)
-                );
+        return UserInputService.GetSelectionChoice(PromptTitle, pageChoices);
     }
 
     #endregion

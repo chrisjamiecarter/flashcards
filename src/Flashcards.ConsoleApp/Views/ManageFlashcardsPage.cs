@@ -33,7 +33,7 @@ internal class ManageFlashcardsPage : BasePage
     #endregion
     #region Properties
     
-    internal static IEnumerable<UserChoice> PageChoices
+    internal static IEnumerable<SelectionChoice> PageChoices
     {
         get
         {
@@ -56,25 +56,17 @@ internal class ManageFlashcardsPage : BasePage
 
         while (status != PageStatus.Closed)
         {
-            AnsiConsole.Clear();
-
             WriteHeader(PageTitle);
 
-            var option = AnsiConsole.Prompt(
-                new SelectionPrompt<UserChoice>()
-                .Title(PromptTitle)
-                .AddChoices(PageChoices)
-                .UseConverter(c => c.Name!)
-                );
-
-            status = PerformOption(option);
+            var choice = UserInputService.GetSelectionChoice(PromptTitle, PageChoices);
+            status = PerformOption(choice);
         }
     }
 
     #endregion
     #region Methods - Private
 
-    private PageStatus PerformOption(UserChoice option)
+    private SelectionChoice PerformOption(SelectionChoice option)
     {
         switch (option.Id)
         {

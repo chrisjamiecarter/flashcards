@@ -19,8 +19,6 @@ internal class UpdateFlashcardPage : BasePage
 
     internal static FlashcardDto? Show(FlashcardDto flashcard, string stackName)
     {
-        AnsiConsole.Clear();
-
         WriteHeader(PageTitle);
 
         // Show user the flashcard which is being updated.

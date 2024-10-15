@@ -19,8 +19,6 @@ internal class UpdateStackPage : BasePage
 
     internal static StackDto? Show(StackDto stack)
     {
-        AnsiConsole.Clear();
-
         WriteHeader(PageTitle);
 
         // Show user the stack which is being updated.

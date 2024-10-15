@@ -18,8 +18,6 @@ internal class CreateStackPage : BasePage
 
     internal static StackDto? Show()
     {
-        AnsiConsole.Clear();
-
         WriteHeader(PageTitle);
                 
         var name = UserInputService.GetString($"Enter the [blue]name[/] for this stack, or [blue]0[/] to cancel creating: ");
